@@ -3,6 +3,8 @@ package com.business.customermanagement.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +37,7 @@ public class CustomerController {
 	 * @return customer with its newly generated id
 	 */
 	@PostMapping
-	public CustomerDto addCustomer(@RequestBody CustomerDto customer) {
+	public CustomerDto addCustomer(@Valid @RequestBody CustomerDto customer) {
 		return customerService.addCustomer(customer);
 	}
 	
@@ -47,7 +49,7 @@ public class CustomerController {
 	 * @return updated customer with its id
 	 */
 	@PutMapping("/{id}")
-	public CustomerDto updateCustomer(@PathVariable @ApiParam(value = "customerId", example = "1") Integer id, @RequestBody CustomerDto customer) {
+	public CustomerDto updateCustomer(@PathVariable @ApiParam(value = "customerId", example = "1") Integer id,@Valid @RequestBody CustomerDto customer) {
 		return customerService.updateCustomer(id, customer);
 	}
 	

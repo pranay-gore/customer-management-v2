@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -44,6 +45,15 @@ public class CustomerExceptionHandler {
 	    		ErrorConstant.BAD_REQUEST.getErrorCode(), 
 	    		validateException.getConstraintViolations().stream().findFirst().get().getMessage());
 	    return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<ErrorResponse> handleValidationExceptions(
+			MethodArgumentNotValidException validateException) {
+		ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(),
+	    		ErrorConstant.BAD_REQUEST.getErrorCode(), 
+	    		validateException.getBindingResult().getFieldErrors().stream().findFirst().get().getDefaultMessage());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 
 }
