@@ -31,22 +31,13 @@ public class CustomerExceptionHandler {
 		ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now() ,notFoundException.getExceptionCode(), notFoundException.getExceptionMessage());
 		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
 	}
-	
+
 	/**
 	 * Handles validation exception.
 	 *
-	 * @param exception the exception
+	 * @param validateException - exception of type MethodArgumentNotValidException
 	 * @return the response entity with error code and message
 	 */
-	@ExceptionHandler(ConstraintViolationException.class)
-	public ResponseEntity<ErrorResponse> handleValidationExceptions(
-			ConstraintViolationException validateException) {
-	    ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(),
-	    		ErrorConstant.BAD_REQUEST.getErrorCode(), 
-	    		validateException.getConstraintViolations().stream().findFirst().get().getMessage());
-	    return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
-	}
-	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> handleValidationExceptions(
 			MethodArgumentNotValidException validateException) {
