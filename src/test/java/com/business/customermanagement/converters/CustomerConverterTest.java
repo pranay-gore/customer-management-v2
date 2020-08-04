@@ -47,15 +47,6 @@ public class CustomerConverterTest {
 	}
 	
 	@Test
-	public void testEntityToDtoForEmptyList() {
-       List<Customer> customers = new ArrayList<>();
-       Throwable thrown = catchThrowable(() -> {
-    	   customerConverter.entityToDto(customers);
-    	});
-       assertThat(thrown).isInstanceOf(CustomerNotFoundException.class);
-	}
-
-	@Test
 	public void testDtoToEntity() {
 		assertThat(customerConverter.dtoToEntity(customerDto).getFirstName()).isEqualTo("John");
 	}

@@ -2,12 +2,11 @@ package com.business.customermanagement.converters;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
-import com.business.customermanagement.constants.ErrorConstant;
 import com.business.customermanagement.dtos.CustomerDto;
 import com.business.customermanagement.entities.Customer;
-import com.business.customermanagement.exceptions.CustomerNotFoundException;
 
 /**
  * The Class CustomerConverter - has methods to convert DTO to entity and vice versa
@@ -39,9 +38,6 @@ public class CustomerConverter {
 	 * @return the list
 	 */
 	public List<CustomerDto> entityToDto(List<Customer> customers) {
-		if(customers.isEmpty()) {
-			throw new CustomerNotFoundException(ErrorConstant.CUSTOMERS_NOT_FOUND);
-		}
 		return customers.stream().map(customer -> entityToDto(customer)).collect(Collectors.toList());
 	}
 	

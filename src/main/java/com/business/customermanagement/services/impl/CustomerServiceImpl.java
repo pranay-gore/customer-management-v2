@@ -3,7 +3,6 @@ package com.business.customermanagement.services.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.business.customermanagement.constants.ErrorConstant;
@@ -21,11 +20,14 @@ import com.business.customermanagement.services.CustomerService;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired
 	private CustomerRepository customerRepo;
 
-	@Autowired
 	private CustomerConverter customerConverter;
+	
+	public CustomerServiceImpl(CustomerRepository customerRepo, CustomerConverter customerConverter) {
+		this.customerRepo = customerRepo;
+		this.customerConverter = customerConverter;
+	}
 
 	/**
 	 * Adds customer.
@@ -65,11 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<CustomerDto> getAllCustomers() {
 		List<Customer> customers = customerRepo.findAll();
-		if (customers.isEmpty()) {
-			throw new CustomerNotFoundException(ErrorConstant.CUSTOMERS_NOT_FOUND);
-		} else {
 			return customerConverter.entityToDto(customers);
-		}
 	}
 
 	/**
@@ -95,15 +93,15 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Override
 	public List<CustomerDto> getByCustomerName(Optional<String> firstName, Optional<String> lastName) {
-		List<Customer> customers;
+		List<Customer> customers = null;
 		if (firstName.isPresent() && lastName.isPresent()) {
 			customers = customerRepo.findByFirstNameIgnoreCaseAndLastNameIgnoreCase(firstName.get(), lastName.get());
 		} else if (firstName.isPresent()) {
 			customers = customerRepo.findByFirstNameIgnoreCase(firstName.get());
-		} else {
+		} else if (lastName.isPresent()){
 			customers = customerRepo.findByLastNameIgnoreCase(lastName.get());
-		}
-
+		} 
+		
 		if (customers.isEmpty()) {
 			throw new CustomerNotFoundException(ErrorConstant.CUSTOMERS_NOT_FOUND);
 		}

@@ -77,16 +77,6 @@ public class CustomerServiceImplTest {
 	}
 
 	@Test
-	public void testGetAllCustomersForException() {
-		List<Customer> customers = new ArrayList<>();
-		when(customerRepository.findAll()).thenReturn(customers);
-		Throwable thrown = catchThrowable(() -> {
-			customerService.getAllCustomers();
-		});
-		assertThat(thrown).isInstanceOf(CustomerNotFoundException.class);
-	}
-
-	@Test
 	public void testGetAllCustomers() {
 		List<Customer> customers = new ArrayList<>();
 		customers.add(customer);

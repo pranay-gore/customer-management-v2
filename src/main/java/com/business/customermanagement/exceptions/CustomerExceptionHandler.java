@@ -2,8 +2,6 @@ package com.business.customermanagement.exceptions;
 
 import java.time.LocalDateTime;
 
-import javax.validation.ConstraintViolationException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

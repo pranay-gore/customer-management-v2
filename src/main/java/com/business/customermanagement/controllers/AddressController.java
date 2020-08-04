@@ -2,7 +2,6 @@ package com.business.customermanagement.controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +17,12 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/customers/{id}/address")
 public class AddressController {
-	
-	@Autowired
+
 	private AddressService addressService;
+	
+	public AddressController(AddressService addressService) {
+		this.addressService = addressService;
+	}
 	
 	/**
 	 * Update the customer's address.
