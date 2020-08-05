@@ -1,7 +1,6 @@
 package com.business.customermanagement.converters;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 
 import com.business.customermanagement.dtos.CustomerDto;
 import com.business.customermanagement.entities.Customer;
-import com.business.customermanagement.exceptions.CustomerNotFoundException;
 
 public class CustomerConverterTest {
 

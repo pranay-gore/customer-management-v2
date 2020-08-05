@@ -2,20 +2,17 @@ package com.business.customermanagement.entities;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -40,9 +37,7 @@ public class Customer {
 	@Column(name = "age")
 	private int age;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
-	@JsonIgnoreProperties("customer")
+	@Embedded
 	private Address address;
 
 	@CreationTimestamp
@@ -52,5 +47,8 @@ public class Customer {
 	@UpdateTimestamp
 	@Column(name = "updated_time")
 	private LocalDateTime updatedTime;
+
+	@Version
+	private Integer version;
 
 }

@@ -27,16 +27,11 @@ public class AddressServiceImpl implements AddressService{
 		this.addressConverter = addressConverter;
 	}
 
-
-
 	@Override
 	public CustomerDto updateAddress(Integer id, AddressDto addressDto) {
 		Customer customer = customerRepo.findById(id)
 				.orElseThrow(() -> new CustomerNotFoundException(ErrorConstant.CUSTOMER_NOT_FOUND));
-		
-		int addressId = customer.getAddress().getId();
 		customer.setAddress(addressConverter.DtoToEntity(addressDto));
-		customer.getAddress().setId(addressId);
 		return customerConverter.entityToDto(customerRepo.save(customer));
 	}
 
