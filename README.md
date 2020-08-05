@@ -42,10 +42,18 @@ To verify every small change in the application, unit test cases have been writt
 mvn test
 ```
 
-## Swagger
+## Request Details:
 
-Once application is running on port 8080, below swagger url can be used to access APIs,
+| Method        | URL           | Request  | 
+| ------------- |:-------------:|-------------  |
+| POST      | http://localhost:8081/api/v2/customers | {"firstName": "string",  "lastName": "string",  "age": 0,  "currentAddress": {    "houseNumber": "string",    "street": "string",    "city": "string",    "province": "string",    "country": "string",    "pincode": "string"     }} | 
+| PUT      | http://localhost:8081/api/v2/customers/{id}      |   {“firstName”: “string”, “lastName”: “string”, “age”: 0, “currentAddress”: { “id”: 1, “houseNumber”: “string”, “street”: “string”, “city”: “string”, “province”: “string”, “country”: “string”, “pincode”: “string” }} |
+| GET | http://localhost:8081/api/v2/customers/{id}      | id = customer id   |
+| GET | http://localhost:8081/api/v2/customers?fname=firstname&lname=lastname      |  id = customer id, lname = lastname of the customer, fname = firstname of the customer. (Query params are optional)|
+| PUT      | http://localhost:8081/api/v2/customers/{id}/address | {    "houseNumber": "string",    "street": "string",    "city": "string",    "province": "string",    "country": "string",    "pincode": "string"     } | 
 
-[http://localhost:8080/api/v1/swagger-ui.html](http://localhost:8080/api/v1/swagger-ui.html)
+## Future Changes:
+
+
 
 
