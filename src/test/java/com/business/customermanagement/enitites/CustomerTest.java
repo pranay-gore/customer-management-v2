@@ -3,6 +3,7 @@ package com.business.customermanagement.enitites;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,9 @@ public class CustomerTest {
 	
 	@Test
 	public void testGetId() {
-		Integer id = 1;
-		customer.setId(id);
-        assertThat(id).isEqualTo(customer.getId());
+		UUID id = UUID.randomUUID();
+		customer.setCustomerId(id);
+        assertThat(id).isEqualTo(customer.getCustomerId());
 	}
 	
 	@Test

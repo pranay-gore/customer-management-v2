@@ -2,6 +2,7 @@ package com.business.customermanagement.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.business.customermanagement.dtos.CustomerDto;
 
@@ -25,7 +26,7 @@ public interface CustomerService {
 	 * @param customerDto - object representing customer
 	 * @return the updated customer
 	 */
-	CustomerDto updateCustomer(Integer id, CustomerDto customerDto);
+	CustomerDto updateCustomer(UUID id, CustomerDto customerDto);
 
 	/**
 	 * Gets all customers.
@@ -40,7 +41,7 @@ public interface CustomerService {
 	 * @param id - id of the customer
 	 * @return the customer
 	 */
-	CustomerDto getCustomerById(Integer id);
+	CustomerDto getCustomerById(UUID id);
 
 	/**
 	 * Gets the list of customers

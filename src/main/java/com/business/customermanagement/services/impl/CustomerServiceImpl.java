@@ -2,6 +2,7 @@ package com.business.customermanagement.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @return the updated customer
 	 */
 	@Override
-	public CustomerDto updateCustomer(Integer id, CustomerDto customerDto) {
+	public CustomerDto updateCustomer(UUID id, CustomerDto customerDto) {
 		Customer savedCustomer = customerRepo.findById(id)
 				.orElseThrow(() -> new CustomerNotFoundException(ErrorConstant.CUSTOMER_NOT_FOUND));
 		savedCustomer.setFirstName(customerDto.getFirstName());
@@ -77,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @return the customer
 	 */
 	@Override
-	public CustomerDto getCustomerById(Integer id) {
+	public CustomerDto getCustomerById(UUID id) {
 		Customer customer = customerRepo.findById(id)
 				.orElseThrow(() -> new CustomerNotFoundException(ErrorConstant.CUSTOMER_NOT_FOUND));
 		

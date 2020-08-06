@@ -1,5 +1,7 @@
 package com.business.customermanagement.dtos;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +17,7 @@ import lombok.Data;
 @Data
 public class CustomerDto {
 
-	private Integer id;
+	private UUID customerId;
 
 	@NotBlank(message = "Firstname is mandatory")
 	private String firstName;

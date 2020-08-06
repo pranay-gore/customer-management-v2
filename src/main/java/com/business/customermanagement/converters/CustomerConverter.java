@@ -25,7 +25,7 @@ public class CustomerConverter {
 		customerDto.setFirstName(customer.getFirstName());
 		customerDto.setLastName(customer.getLastName());
 		customerDto.setAge(customer.getAge());
-		customerDto.setId(customer.getId());
+		customerDto.setCustomerId(customer.getCustomerId());
 		customerDto.setCurrentAddress(customer.getAddress());
 		
 		return customerDto;

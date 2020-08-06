@@ -1,5 +1,7 @@
 package com.business.customermanagement.controllers;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +34,7 @@ public class AddressController {
 	 * @return updated customer with its id
 	 */
 	@PutMapping
-	public CustomerDto updateAddress(@PathVariable(name = "id") @ApiParam(value = "customerId", example = "1") Integer customer_id,@Valid @RequestBody AddressDto address) {
+	public CustomerDto updateAddress(@PathVariable(name = "id") @ApiParam(value = "customerId", example = "6ace0d48-43ee-459c-ad80-6c1efd077ebb") UUID customer_id,@Valid @RequestBody AddressDto address) {
 		return addressService.updateAddress(customer_id, address);
 	}
 }

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,7 @@ public class CustomerServiceImplTest {
 
 	private Customer customer;
 	private CustomerDto customerDto;
+	private UUID id;
 
 	@BeforeEach
 	public void setUp() {
@@ -43,6 +45,7 @@ public class CustomerServiceImplTest {
 		customer = new Customer();
 		customer.setFirstName("Arya");
 		customer.setLastName("Stark");
+		id = UUID.randomUUID();
 	}
 
 	@Test
@@ -58,10 +61,10 @@ public class CustomerServiceImplTest {
 	@Test
 	public void testUpdateCustomerForException() {
 		Optional<Customer> optinalCustomer = Optional.empty();
-		when(customerRepository.findById(1)).thenReturn(optinalCustomer);
+		when(customerRepository.findById(id)).thenReturn(optinalCustomer);
 
 		Throwable thrown = catchThrowable(() -> {
-			customerService.updateCustomer(1, customerDto);
+			customerService.updateCustomer(id, customerDto);
 		});
 		assertThat(thrown).isInstanceOf(CustomerNotFoundException.class);
 	}
@@ -69,11 +72,11 @@ public class CustomerServiceImplTest {
 	@Test
 	public void testUpdateCustomer() {
 		Optional<Customer> optinalCustomer = Optional.of(customer);
-		when(customerRepository.findById(1)).thenReturn(optinalCustomer);
+		when(customerRepository.findById(id)).thenReturn(optinalCustomer);
 		when(customerRepository.save(customer)).thenReturn(customer);
 		when(customerConverter.entityToDto(customer)).thenReturn(customerDto);
 
-		assertThat(customerService.updateCustomer(1, customerDto).getFirstName()).isEqualTo(customer.getFirstName());
+		assertThat(customerService.updateCustomer(id, customerDto).getFirstName()).isEqualTo(customer.getFirstName());
 	}
 
 	@Test
@@ -91,10 +94,10 @@ public class CustomerServiceImplTest {
 	@Test
 	public void testGetCustomerByIdForException() {
 		Optional<Customer> optinalCustomer = Optional.empty();
-		when(customerRepository.findById(1)).thenReturn(optinalCustomer);
+		when(customerRepository.findById(id)).thenReturn(optinalCustomer);
 
 		Throwable thrown = catchThrowable(() -> {
-			customerService.getCustomerById(1);
+			customerService.getCustomerById(id);
 		});
 		assertThat(thrown).isInstanceOf(CustomerNotFoundException.class);
 	}
@@ -102,9 +105,9 @@ public class CustomerServiceImplTest {
 	@Test
 	public void testGetCustomerById() {
 		Optional<Customer> optinalCustomer = Optional.of(customer);
-		when(customerRepository.findById(1)).thenReturn(optinalCustomer);
+		when(customerRepository.findById(id)).thenReturn(optinalCustomer);
 		when(customerConverter.entityToDto(customer)).thenReturn(customerDto);
-        assertThat(customerService.getCustomerById(1).getFirstName()).isEqualTo(customer.getFirstName());
+        assertThat(customerService.getCustomerById(id).getFirstName()).isEqualTo(customer.getFirstName());
 	}
 	
 	@Test

@@ -1,12 +1,12 @@
 package com.business.customermanagement.entities;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -24,10 +24,15 @@ import lombok.Data;
 @Table(name = "customers")
 public class Customer {
 
-	@Id
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id;*/
 
+	@Id
+	@GeneratedValue
+	@Column(name = "customer_id")
+	private UUID customerId;
+	
 	@Column(name = "firstname")
 	private String firstName;
 

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class CustomerControllerTest {
 	private CustomerController controller;
 
 	CustomerDto customerDto;
+	UUID id;
 
 	@BeforeEach
 	public void setUp() {
@@ -32,6 +34,7 @@ public class CustomerControllerTest {
 		customerDto = new CustomerDto();
 		customerDto.setFirstName("Arya");
 		customerDto.setLastName("Stark");
+		id = UUID.randomUUID();
 	}
 
 	@Test
@@ -42,14 +45,14 @@ public class CustomerControllerTest {
 
 	@Test
 	public void TestUpdateCustomer() {
-		when(customerService.updateCustomer(1, customerDto)).thenReturn(customerDto);
-		assertThat(controller.updateCustomer(1, customerDto).getFirstName()).isEqualTo("Arya");
+		when(customerService.updateCustomer(id, customerDto)).thenReturn(customerDto);
+		assertThat(controller.updateCustomer(id, customerDto).getFirstName()).isEqualTo("Arya");
 	}
 
 	@Test
 	public void TestGetCustomerById() {
-		when(customerService.getCustomerById(1)).thenReturn(customerDto);
-		assertThat(controller.getCustomerById(1).getFirstName()).isEqualTo("Arya");
+		when(customerService.getCustomerById(id)).thenReturn(customerDto);
+		assertThat(controller.getCustomerById(id).getFirstName()).isEqualTo("Arya");
 	}
 
 	@Test

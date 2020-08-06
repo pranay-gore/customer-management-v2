@@ -1,6 +1,7 @@
 package com.business.customermanagement.repositories;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import com.business.customermanagement.entities.Customer;
  * The Interface CustomerRepository.
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
 	/**
 	 * Find by first name ignore case and last name ignore case.

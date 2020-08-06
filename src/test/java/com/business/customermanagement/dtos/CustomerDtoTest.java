@@ -2,6 +2,8 @@ package com.business.customermanagement.dtos;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +20,9 @@ public class CustomerDtoTest {
 	
 	@Test
 	public void testGetId() {
-		Integer id = 1;
-		customerDto.setId(id);
-        assertThat(id).isEqualTo(customerDto.getId());
+		UUID id = UUID.randomUUID();
+		customerDto.setCustomerId(id);
+        assertThat(id).isEqualTo(customerDto.getCustomerId());
 	}
 	
 	@Test

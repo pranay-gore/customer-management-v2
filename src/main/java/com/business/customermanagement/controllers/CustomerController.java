@@ -2,6 +2,7 @@ package com.business.customermanagement.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -52,7 +53,7 @@ public class CustomerController {
 	 * @return updated customer with its id
 	 */
 	@PutMapping("/{id}")
-	public CustomerDto updateCustomer(@PathVariable @ApiParam(value = "customerId", example = "1") Integer id,@Valid @RequestBody CustomerDto customer) {
+	public CustomerDto updateCustomer(@PathVariable @ApiParam(value = "customerId", example = "6ace0d48-43ee-459c-ad80-6c1efd077ebb") UUID id,@Valid @RequestBody CustomerDto customer) {
 		return customerService.updateCustomer(id, customer);
 	}
 	
@@ -63,7 +64,7 @@ public class CustomerController {
 	 * @return the customer from the database if it exists
 	 */
 	@GetMapping("/{id}")
-	public CustomerDto getCustomerById(@PathVariable @ApiParam(value = "customerId", example = "1") Integer id) {
+	public CustomerDto getCustomerById(@PathVariable @ApiParam(value = "customerId", example = "6ace0d48-43ee-459c-ad80-6c1efd077ebb") UUID id) {
 		return customerService.getCustomerById(id);
 	}
 	

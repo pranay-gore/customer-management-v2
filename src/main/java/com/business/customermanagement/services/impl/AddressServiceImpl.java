@@ -1,5 +1,7 @@
 package com.business.customermanagement.services.impl;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import com.business.customermanagement.constants.ErrorConstant;
@@ -28,7 +30,7 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public CustomerDto updateAddress(Integer id, AddressDto addressDto) {
+	public CustomerDto updateAddress(UUID id, AddressDto addressDto) {
 		Customer customer = customerRepo.findById(id)
 				.orElseThrow(() -> new CustomerNotFoundException(ErrorConstant.CUSTOMER_NOT_FOUND));
 		customer.setAddress(addressConverter.DtoToEntity(addressDto));
