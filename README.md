@@ -47,12 +47,17 @@ mvn test
 | Method        | URL           | Request  | 
 | ------------- |:-------------:|-------------  |
 | POST      | http://localhost:8081/api/v2/customers | {"firstName": "string",  "lastName": "string",  "age": 10,  "currentAddress": {    "houseNumber": "string",    "street": "string",    "city": "string",    "province": "string",    "country": "string",    "pincode": "string"     }} | 
-| PUT      | http://localhost:8081/api/v2/customers/{id}      |   {“firstName”: “string”, “lastName”: “string”, “age”: 0, “currentAddress”: { “houseNumber”: “string”, “street”: “string”, “city”: “string”, “province”: “string”, “country”: “string”, “pincode”: “string” }} |
-| GET | http://localhost:8081/api/v2/customers/{id}      | id = customer id   |
-| GET | http://localhost:8081/api/v2/customers?fname=firstname&lname=lastname      |  id = customer id, lname = lastname of the customer, fname = firstname of the customer. (Query params are optional)|
-| PUT      | http://localhost:8081/api/v2/customers/{id}/address | {    "houseNumber": "string",    "street": "string",    "city": "string",    "province": "string",    "country": "string",    "pincode": "string"     } | 
+| PUT      | http://localhost:8081/api/v2/customers/{customerId}      |   {“firstName”: “string”, “lastName”: “string”, “age”: 0, “currentAddress”: { “houseNumber”: “string”, “street”: “string”, “city”: “string”, “province”: “string”, “country”: “string”, “pincode”: “string” }} |
+| GET | http://localhost:8081/api/v2/customers/{customerId}      | customerId = id of the customer   |
+| GET | http://localhost:8081/api/v2/customers?fname=firstname&lname=lastname      |  lname = lastname of the customer, fname = firstname of the customer. (Query params are optional)|
+| PUT      | http://localhost:8081/api/v2/customers/{customerId}/address | {    "houseNumber": "string",    "street": "string",    "city": "string",    "province": "string",    "country": "string",    "pincode": "string"     } | 
 
 ## Future Changes:
+
+
+## Swagger API:
+
+[http://localhost:8081/api/v2/swagger-ui.html#/](http://localhost:8081/api/v2/swagger-ui.html#/)
 
 
 
